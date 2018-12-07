@@ -36,8 +36,6 @@ import retrofit2.Response;
  */
 public class RecipeListActivity extends AppCompatActivity {
 
-    //private RecyclerView mRecyclerView;
-    //private RecipeAdapter mRecipeAdapter;
     private boolean mTwoPane;
 
     /**
@@ -98,9 +96,8 @@ public class RecipeListActivity extends AppCompatActivity {
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(RecipeListActivity.this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         RecipeAdapter mRecipeAdapter = new RecipeAdapter(this, recipeList,mTwoPane);
-        //RecipeAdapter mRecipeAdapter = new RecipeAdapter(this, recipeList);
-        // Set the adapter
 
+        // Set the adapter
         mRecyclerView.setAdapter(mRecipeAdapter);
     }
 }

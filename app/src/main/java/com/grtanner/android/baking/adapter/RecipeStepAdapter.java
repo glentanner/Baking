@@ -15,10 +15,8 @@ limitations under the License.
  */
 package com.grtanner.android.baking.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,16 +27,16 @@ import com.grtanner.android.baking.ui.RecipeDetailActivity;
 import com.grtanner.android.baking.ui.RecipeStepActivity;
 import com.grtanner.android.baking.ui.RecipeStepFragment;
 import com.grtanner.android.baking.data.Step;
-import java.util.List;
+import java.util.ArrayList;
 
 // Ref: https://www.sitepoint.com/mastering-complex-lists-with-the-android-recyclerview/
 public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.RecipeStepViewHolder> {
 
-    List<Step> mStepsList;
-    RecipeDetailActivity mParentActivity;
+    private ArrayList<Step> mStepsList;
+    private RecipeDetailActivity mParentActivity;
     private boolean mTwoPane;
 
-    public RecipeStepAdapter(RecipeDetailActivity parent, List<Step> stepsList, boolean twoPane) {
+    public RecipeStepAdapter(RecipeDetailActivity parent, ArrayList<Step> stepsList, boolean twoPane) {
         this.mParentActivity = parent;
         this.mStepsList = stepsList;
         this.mTwoPane = twoPane;
@@ -74,6 +72,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.recipe_step_detail_container, fragment)
+                            .addToBackStack(null)
                             .commit();
                 } else {
                     Intent intent = new Intent(view.getContext(), RecipeStepActivity.class);
@@ -87,7 +86,10 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     @Override
     public int getItemCount() {
         //returns the number of elements the RecyclerView will display
-        return mStepsList.size();
+        // Remember for an ArrayList, size() returns number of elements, length returns capacity.
+        if (mStepsList != null) {
+            return mStepsList.size();
+        } else return 0;
     }
 
     @Override

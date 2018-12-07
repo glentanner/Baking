@@ -22,14 +22,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.grtanner.android.baking.adapter.RecipeStepAdapter;
-import com.grtanner.android.baking.data.Recipe;
+import com.grtanner.android.baking.data.Step;
+import java.util.ArrayList;
 
 /**
  * An activity representing a single Recipe detail screen. This
@@ -39,8 +37,10 @@ import com.grtanner.android.baking.data.Recipe;
  */
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    private Recipe mRecipe;
     private boolean mTwoPane;
+    private ArrayList<Step> mRecipeSteps = new ArrayList<>();
+    private String mRecipeName;
+    private String mRecipeIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +57,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        if (savedInstanceState != null) {
+            mTwoPane = savedInstanceState.getBoolean("TwoPane");
+            mRecipeSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
+            mRecipeName = savedInstanceState.getString("RecipeName");
+            mRecipeIngredients = savedInstanceState.getString("RecipeIngredients");
+        }
+
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
-            mRecipe = bundle.getParcelable("RECIPE");
             mTwoPane = bundle.getBoolean("TwoPane");
+            mRecipeSteps = bundle.getParcelableArrayList("RecipeSteps");
+            mRecipeName = bundle.getString("RecipeName");
+            mRecipeIngredients = bundle.getString("RecipeIngredients");
+        }
 
-            CollapsingToolbarLayout appBarLayout = findViewById(R.id.activity_recipe_detail_toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mRecipe.getName());
-            }
+        CollapsingToolbarLayout appBarLayout = findViewById(R.id.activity_recipe_detail_toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(mRecipeName);
         }
 
         if (findViewById(R.id.recipe_step_detail_container) != null) {
@@ -76,12 +85,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.recipe_detail);
 
-        ingTextView.setText(getString(R.string.recipe_name_and_ingredients, mRecipe.getName()));
-        textView.setText(mRecipe.getIngredientsAsString());
+        ingTextView.setText(getString(R.string.recipe_name_and_ingredients, mRecipeName));
+        textView.setText(mRecipeIngredients);
 
         RecyclerView mRecyclerView = findViewById(R.id.recycler_view_steps);
-        RecipeStepAdapter stepsAdapter = new RecipeStepAdapter(this, mRecipe.getSteps(), mTwoPane);
-        Log.i("StepAdapter: ", "TwoPane is "+Boolean.toString(mTwoPane));
+        RecipeStepAdapter stepsAdapter = new RecipeStepAdapter(this, mRecipeSteps, mTwoPane);
 
         // Set the adapter
         mRecyclerView.setAdapter(stepsAdapter);
@@ -90,26 +98,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        // savedInstanceState is non-null when there is fragment state
-        // saved from previous configurations of this activity
-        // (e.g. when rotating the screen from portrait to landscape).
-        // In this case, the fragment will automatically be re-added
-        // to its container so we don't need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        /*
-        if (savedInstanceState == null) {
-            // Create the detail fragment and add it to the activity
-            // using a fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putParcelable("RECIPE", getIntent().getParcelableExtra("RECIPE"));
-            RecipeDetailFragment fragment = new RecipeDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.recipe_detail_container, fragment)
-                    .commit();
-        }*/
         if (findViewById(R.id.recipe_step_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
@@ -133,5 +121,23 @@ public class RecipeDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("TwoPane", mTwoPane);
+        outState.putParcelableArrayList("RecipeSteps", mRecipeSteps);
+        outState.putString("RecipeName", mRecipeName);
+        outState.putString("RecipeIngredients", mRecipeIngredients);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mTwoPane = savedInstanceState.getBoolean("TwoPane");
+        mRecipeSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
+        mRecipeName = savedInstanceState.getString("RecipeName");
+        mRecipeIngredients = savedInstanceState.getString("RecipeIngredients");
     }
 }

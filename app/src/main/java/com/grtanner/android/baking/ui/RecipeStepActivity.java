@@ -15,12 +15,12 @@ limitations under the License.
  */
 package com.grtanner.android.baking.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
+import com.grtanner.android.baking.data.Step;
 
 /**
  * An activity representing a single RecipeStep detail screen. This
@@ -31,6 +31,7 @@ import android.view.MenuItem;
 public class RecipeStepActivity extends AppCompatActivity {
 
     private boolean mTwoPane;
+    private Step mStep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,10 @@ public class RecipeStepActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putParcelable("STEP", getIntent().getParcelableExtra("STEP"));
+            mStep = getIntent().getParcelableExtra("STEP");
+
+            arguments.putParcelable("STEP", mStep);
+
             RecipeStepFragment fragment = new RecipeStepFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -81,13 +85,7 @@ public class RecipeStepActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            navigateUpTo(new Intent(this, RecipeDetailActivity.class));
+            this.onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

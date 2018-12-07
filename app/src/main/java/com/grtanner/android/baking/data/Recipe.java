@@ -37,7 +37,7 @@ public class Recipe implements Parcelable {
     private List<Ingredient> ingredients = null;
     @SerializedName("steps")
     @Expose
-    private List<Step> steps = null;
+    private ArrayList<Step> steps = null;
     @SerializedName("servings")
     @Expose
     private Integer servings;
@@ -67,8 +67,9 @@ public class Recipe implements Parcelable {
         this.name = ((String) in.readValue((String.class.getClassLoader())));
         this.ingredients = new ArrayList<>();
         in.readList(this.ingredients, (Ingredient.class.getClassLoader()));
-        this.steps = new ArrayList<>();
-        in.readList(this.steps, (Step.class.getClassLoader()));
+        //this.steps = new ArrayList<>();
+        //in.readList(this.steps, (Step.class.getClassLoader()));
+        in.readTypedList(this.steps, Step.CREATOR);
         this.servings = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));
     }
@@ -119,11 +120,11 @@ public class Recipe implements Parcelable {
         this.ingredients = ingredients;
     }
 
-    public List<Step> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
 
@@ -147,7 +148,7 @@ public class Recipe implements Parcelable {
         dest.writeValue(id);
         dest.writeValue(name);
         dest.writeList(ingredients);
-        dest.writeList(steps);
+        dest.writeTypedList(steps);
         dest.writeValue(servings);
         dest.writeValue(image);
     }
@@ -164,7 +165,7 @@ public class Recipe implements Parcelable {
         private final Integer id;
         private final String name;
         private List<Ingredient> ingredients = null;
-        private List<Step> steps = null;
+        private ArrayList<Step> steps = null;
         private Integer servings;
         private String image;
 
@@ -178,7 +179,7 @@ public class Recipe implements Parcelable {
             return this;
         }
 
-        public RecipeBuilder steps(List<Step> steps) {
+        public RecipeBuilder steps(ArrayList<Step> steps) {
             this.steps = steps;
             return this;
         }

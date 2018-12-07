@@ -20,24 +20,26 @@ import android.content.ComponentName;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+
 import com.grtanner.android.baking.BakingAppWidget;
 import com.grtanner.android.baking.ui.R;
 import com.grtanner.android.baking.ui.RecipeDetailActivity;
 import com.grtanner.android.baking.ui.RecipeListActivity;
 import com.grtanner.android.baking.data.Recipe;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    private static final String INGREDIENTS_KEY = "INGREDIENTS_KEY";
     private RecipeListActivity mParentActivity;
     private ArrayList<Recipe> mRecipeList;
     private boolean mTwoPane;
@@ -70,11 +72,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.recipeName.setText(tempRecipeName);
 
         // Get the recipe name, and remove any spaces in the name so that we can use it in a url.
-        tempRecipeName = tempRecipeName.replaceAll("\\s","").toLowerCase();
+        tempRecipeName = tempRecipeName.replaceAll("\\s", "").toLowerCase();
 
         // There are a lot of missing images in this API.
         // Check to see if there is an image.  If not, use a stock photo based on the recipe title.
-        if(recipe.getImage() != null && !recipe.getImage().isEmpty()) {
+        if (recipe.getImage() != null && !recipe.getImage().isEmpty()) {
             Picasso.get()
                     .load(recipe.getImage())
                     .into(holder.recipeImage);
@@ -91,28 +93,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             public void onClick(View view) {
                 Recipe recipe = mRecipeList.get(pos);
 
-                /*if(mTwoPane) {
-                    Bundle arguments = new Bundle();
-                    arguments.putParcelable("RECIPE", recipe);
-                    RecipeDetailFragment fragment = new RecipeDetailFragment();
-                    fragment.setArguments(arguments);
-                    mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.recipe_detail_container, fragment)
-                            .commit();
-                } else {*/
-                    Intent intent = new Intent(view.getContext(), RecipeDetailActivity.class);
-                    intent.putExtra("RECIPE", recipe);
-                    intent.putExtra("TwoPane", mTwoPane);
-                    view.getContext().startActivity(intent);
-                //}
+                Intent intent = new Intent(view.getContext(), RecipeDetailActivity.class);
+                intent.putExtra("TwoPane", mTwoPane);
+                intent.putParcelableArrayListExtra("RecipeSteps", recipe.getSteps());
+                intent.putExtra("RecipeName", recipe.getName());
+                intent.putExtra("RecipeIngredients", recipe.getIngredientsAsString());
+                view.getContext().startActivity(intent);
 
                 // Update the AppWidgetProvider with a list of instructions.
                 // Reference: htpps://stackoverflow.com/questions/3455123/programmatically-update-widget-from-activity-service-receiver
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
                 RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.baking_app_widget);
                 ComponentName bakingWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
-                remoteViews.setTextViewText(R.id.appwidget_text, recipe.getName()+"\n\n"+recipe.getIngredientsAsString());
-                appWidgetManager.updateAppWidget(bakingWidget,remoteViews);
+                remoteViews.setTextViewText(R.id.appwidget_text, recipe.getName() + "\n\n" + recipe.getIngredientsAsString());
+                appWidgetManager.updateAppWidget(bakingWidget, remoteViews);
             }
         });
     }
@@ -123,7 +117,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
     private int fetchImage(String recipeName) {
-        switch(recipeName) {
+        switch (recipeName) {
             case "brownies":
                 return R.drawable.brownies;
             case "yellowcake":

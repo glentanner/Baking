@@ -51,11 +51,6 @@ import com.grtanner.android.baking.data.Step;
 public class RecipeStepFragment extends Fragment {
 
     private static final String NOT_FOUND = "https://media.istockphoto.com/videos/error-internet-page-not-found-video-id1005335648";
-    private static final String POSITION = "position";
-    /// bandwidth meter to measure and estimate bandwidth
-    private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
-    private static final String TAG = "PlayerActivity";
-    private static final String USER_AGENT = "ua";
     private static final String AUTOPLAY = "autoplay";
     private static final String CURRENT_WINDOW_INDEX = "current_window_index";
     private static final String PLAYBACK_POSITION = "playback_position";
@@ -85,8 +80,11 @@ public class RecipeStepFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-
             mStep = getArguments().getParcelable("STEP");
+        }
+
+        if (savedInstanceState != null) {
+            mStep = savedInstanceState.getParcelable("Step");
         }
 
         mActivity = this.getActivity();
@@ -248,6 +246,8 @@ public class RecipeStepFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putParcelable("Step", mStep);
+
         if (mPlayer != null) {
             outState.putLong(PLAYBACK_POSITION, mPlayer.getCurrentPosition());
             outState.putInt(CURRENT_WINDOW_INDEX, mCurrentWindow);
@@ -258,7 +258,9 @@ public class RecipeStepFragment extends Fragment {
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+
         if(savedInstanceState != null){
+            mStep = savedInstanceState.getParcelable("Step");
             mPlaybackPosition = savedInstanceState.getLong(PLAYBACK_POSITION);
             mCurrentWindow = savedInstanceState.getInt(CURRENT_WINDOW_INDEX);
             mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY);
@@ -268,7 +270,9 @@ public class RecipeStepFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         if(savedInstanceState != null){
+            mStep = savedInstanceState.getParcelable("Step");
             mPlaybackPosition = savedInstanceState.getLong(PLAYBACK_POSITION);
             mCurrentWindow = savedInstanceState.getInt(CURRENT_WINDOW_INDEX);
             mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY);
