@@ -17,6 +17,7 @@ package com.grtanner.android.baking;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -35,10 +36,11 @@ public class ListWidgetService extends RemoteViewsService {
     }
 }
 class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-    private static final int mCount = 10;
+    private static final int mCount = 1;
     private List<String> mIngredients = new ArrayList<>();
     private Context mContext;
     private int mAppWidgetId;
+    private String ingredientsString;
 
     public ListRemoteViewsFactory(Context context, Intent intent) {
         mContext = context;
@@ -52,19 +54,21 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
         // First try getting the ingredients from SharedPrefs.  If there isn't any yet, display a string instructing the user to
         // open the app and choose a recipe.
-        String ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext).getString("Ingredients", "Open app and choose a recipe to retrieve ingredients.");
+        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext).getString("Ingredients", "Open app and choose a recipe to retrieve ingredients.");
 
         //for (int i = 0; i < mCount; i++) {
-            mIngredients.add(ingredientsString);
+        //    mIngredients.add(ingredientsString);
         //}
+        mIngredients.clear();
+        mIngredients.add(ingredientsString);
         // We sleep for a second here to show how the empty view appears in the interim.
         // The empty view is set in the StackWidgetProvider and should be a sibling of the
         // collection view.
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //try {
+        //    Thread.sleep(1000);
+        //} catch (InterruptedException e) {
+        //    e.printStackTrace();
+        //}
     }
     public void onDestroy() {
         // In onDestroy() you should tear down anything that was setup for your data source,
@@ -122,5 +126,8 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         // from the network, etc., it is ok to do it here, synchronously. The widget will remain
         // in its current state while work is being done here, so you don't need to worry about
         // locking up the widget.
+        mIngredients.clear();
+        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext).getString("Ingredients", "Open app and choose a recipe to retrieve ingredients.");
+        mIngredients.add(ingredientsString);
     }
 }

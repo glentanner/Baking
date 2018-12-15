@@ -120,7 +120,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 */
 
                 String ingredientsString = recipe.getName() + "\n\n" + recipe.getIngredientsAsString();
-                PreferenceManager.getDefaultSharedPreferences(view.getContext()).edit().putString("Ingredients", ingredientsString).apply();
+
+                PreferenceManager.getDefaultSharedPreferences(view.getContext())
+                        .edit()
+                        .putString("Ingredients", ingredientsString)
+                        .apply();
 
                 // With ListView in the widget
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
