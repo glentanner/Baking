@@ -25,7 +25,7 @@ public class BakingAppWidget extends AppWidgetProvider {
         //Log.i("TAG",widgetText);
 
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         //views.setTextViewText(R.id.appwidget_text, widgetText);
 
         //////////////////////////////////////////////////////////////////////////////////////////////

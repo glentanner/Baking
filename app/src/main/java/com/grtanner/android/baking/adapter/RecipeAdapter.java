@@ -127,7 +127,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 // Without the ListView in the widget - this works well if we just pass a String to the RemoteViews object.
                 //
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
-                RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.baking_app_widget);
+                RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.widget_layout);
                 ComponentName bakingWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
                 remoteViews.setTextViewText(R.id.appwidget_text, recipe.getName() + "\n\n" + recipe.getIngredientsAsString());
                 appWidgetManager.updateAppWidget(bakingWidget, remoteViews);
