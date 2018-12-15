@@ -21,6 +21,7 @@ import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.grtanner.android.baking.BakingAppWidget;
+import com.grtanner.android.baking.BakingWidgetProvider;
 import com.grtanner.android.baking.ui.R;
 import com.grtanner.android.baking.ui.RecipeDetailActivity;
 import com.grtanner.android.baking.ui.RecipeListActivity;
@@ -118,19 +119,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
                 */
 
+                String ingredientsString = recipe.getName() + "\n\n" + recipe.getIngredientsAsString();
+                PreferenceManager.getDefaultSharedPreferences(view.getContext()).edit().putString("Ingredients", ingredientsString).apply();
+
                 // With ListView in the widget
-                //AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
-                //ComponentName thisWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
-                //int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-                //appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
+                ComponentName thisWidget = new ComponentName(mParentActivity, BakingWidgetProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
 
                 // Without the ListView in the widget - this works well if we just pass a String to the RemoteViews object.
                 //
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
-                RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.widget_layout);
-                ComponentName bakingWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
-                remoteViews.setTextViewText(R.id.appwidget_text, recipe.getName() + "\n\n" + recipe.getIngredientsAsString());
-                appWidgetManager.updateAppWidget(bakingWidget, remoteViews);
+                //AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
+                //RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.widget_layout);
+                //ComponentName bakingWidget = new ComponentName(mParentActivity, BakingWidgetProvider.class);
+                //remoteViews.setTextViewText(R.id.widget_item, recipe.getName() + "\n\n" + recipe.getIngredientsAsString());
+                //appWidgetManager.updateAppWidget(bakingWidget, remoteViews);
             }
         });
     }
