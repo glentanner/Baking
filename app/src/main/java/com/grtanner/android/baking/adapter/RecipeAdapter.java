@@ -102,6 +102,30 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
                 // Update the AppWidgetProvider with a list of instructions.
                 // Reference: htpps://stackoverflow.com/questions/3455123/programmatically-update-widget-from-activity-service-receiver
+                /*Method 1:
+                Context context = this;
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_2x1);
+                ComponentName thisWidget = new ComponentName(context, MyWidget.class);
+                remoteViews.setTextViewText(R.id.my_text_view, "myText" + System.currentTimeMillis());
+                appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+
+                Method 2:
+                Context context = getApplicationContext();
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                ComponentName thisWidget = new ComponentName(context, StackWidgetProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
+                */
+
+                // With ListView in the widget
+                //AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
+                //ComponentName thisWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
+                //int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+                //appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
+
+                // Without the ListView in the widget - this works well if we just pass a String to the RemoteViews object.
+                //
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
                 RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.baking_app_widget);
                 ComponentName bakingWidget = new ComponentName(mParentActivity, BakingAppWidget.class);
