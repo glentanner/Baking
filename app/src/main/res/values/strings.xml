@@ -7,4 +7,15 @@
     <string name="add_widget">Add widget</string>
     <string name="recipe_name_and_ingredients">%1$s Ingredients</string>
     <string name="empty_view_text">Open the app and choose a recipe to list ingredients.</string>
+
+    <string name="open_app_to_begin">Open app and choose a recipe to retrieve ingredients.</string>
+    <string name="whitespace">\\s</string>
+    <string name="two_pane">TwoPane</string>
+    <string name="recipe_steps">RecipeSteps</string>
+    <string name="recipe_name">RecipeName</string>
+    <string name="recipe_ingredients">RecipeIngredients</string>
+    <string name="step">STEP</string>
+    <string name="step_num">"Step "</string>
+
+
 </resources>

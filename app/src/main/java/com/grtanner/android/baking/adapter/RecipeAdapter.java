@@ -18,24 +18,19 @@ package com.grtanner.android.baking.adapter;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RemoteViews;
 import android.widget.TextView;
-
 import com.grtanner.android.baking.BakingWidgetProvider;
 import com.grtanner.android.baking.ui.R;
 import com.grtanner.android.baking.ui.RecipeDetailActivity;
 import com.grtanner.android.baking.ui.RecipeListActivity;
 import com.grtanner.android.baking.data.Recipe;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 
@@ -44,6 +39,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private RecipeListActivity mParentActivity;
     private ArrayList<Recipe> mRecipeList;
     private boolean mTwoPane;
+
+    private static final String BROWNIES = "brownies";
+    private static final String YELLOW_CAKE = "yellowcake";
+    private static final String NUTELLA_PIE = "nutellapie";
+    private static final String CHEESE_CAKE = "cheesecake";
 
     public RecipeAdapter(RecipeListActivity parent, ArrayList<Recipe> recipeList, boolean twoPane) {
         this.mParentActivity = parent;
@@ -73,7 +73,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.recipeName.setText(tempRecipeName);
 
         // Get the recipe name, and remove any spaces in the name so that we can use it in a url.
-        tempRecipeName = tempRecipeName.replaceAll("\\s", "").toLowerCase();
+        tempRecipeName = tempRecipeName.replaceAll((mParentActivity.getResources().getString(R.string.whitespace)), "").toLowerCase();
 
         // There are a lot of missing images in this API.
         // Check to see if there is an image.  If not, use a stock photo based on the recipe title.
@@ -95,35 +95,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 Recipe recipe = mRecipeList.get(pos);
 
                 Intent intent = new Intent(view.getContext(), RecipeDetailActivity.class);
-                intent.putExtra("TwoPane", mTwoPane);
-                intent.putParcelableArrayListExtra("RecipeSteps", recipe.getSteps());
-                intent.putExtra("RecipeName", recipe.getName());
-                intent.putExtra("RecipeIngredients", recipe.getIngredientsAsString());
+                intent.putExtra(mParentActivity.getResources().getString(R.string.two_pane), mTwoPane);
+                intent.putParcelableArrayListExtra(mParentActivity.getResources().getString(R.string.recipe_steps), recipe.getSteps());
+                intent.putExtra(mParentActivity.getResources().getString(R.string.recipe_name), recipe.getName());
+                intent.putExtra(mParentActivity.getResources().getString(R.string.recipe_ingredients), recipe.getIngredientsAsString());
                 view.getContext().startActivity(intent);
 
                 // Update the AppWidgetProvider with a list of instructions.
                 // Reference: htpps://stackoverflow.com/questions/3455123/programmatically-update-widget-from-activity-service-receiver
-                /*Method 1:
-                Context context = this;
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_2x1);
-                ComponentName thisWidget = new ComponentName(context, MyWidget.class);
-                remoteViews.setTextViewText(R.id.my_text_view, "myText" + System.currentTimeMillis());
-                appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-
-                Method 2:
-                Context context = getApplicationContext();
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                ComponentName thisWidget = new ComponentName(context, StackWidgetProvider.class);
-                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
-                */
-
                 String ingredientsString = recipe.getName() + "\n\n" + recipe.getIngredientsAsString();
 
                 PreferenceManager.getDefaultSharedPreferences(view.getContext())
                         .edit()
-                        .putString("Ingredients", ingredientsString)
+                        .putString(mParentActivity.getResources().getString(R.string.recipe_ingredients), ingredientsString)
                         .apply();
 
                 // With ListView in the widget
@@ -131,14 +115,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 ComponentName thisWidget = new ComponentName(mParentActivity, BakingWidgetProvider.class);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
                 appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
-
-                // Without the ListView in the widget - this works well if we just pass a String to the RemoteViews object.
-                //
-                //AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mParentActivity);
-                //RemoteViews remoteViews = new RemoteViews(mParentActivity.getPackageName(), R.layout.widget_layout);
-                //ComponentName bakingWidget = new ComponentName(mParentActivity, BakingWidgetProvider.class);
-                //remoteViews.setTextViewText(R.id.widget_item, recipe.getName() + "\n\n" + recipe.getIngredientsAsString());
-                //appWidgetManager.updateAppWidget(bakingWidget, remoteViews);
             }
         });
     }
@@ -150,13 +126,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     private int fetchImage(String recipeName) {
         switch (recipeName) {
-            case "brownies":
+            case BROWNIES:
                 return R.drawable.brownies;
-            case "yellowcake":
+            case YELLOW_CAKE:
                 return R.drawable.yellowcake;
-            case "nutellapie":
+            case NUTELLA_PIE:
                 return R.drawable.nutellapie;
-            case "cheesecake":
+            case CHEESE_CAKE:
                 return R.drawable.cheesecake;
             default:
                 return R.drawable.defaultimage;

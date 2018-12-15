@@ -17,7 +17,6 @@ package com.grtanner.android.baking;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -26,7 +25,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-
 import com.grtanner.android.baking.ui.R;
 
 public class ListWidgetService extends RemoteViewsService {
@@ -35,6 +33,7 @@ public class ListWidgetService extends RemoteViewsService {
         return new ListRemoteViewsFactory(this.getApplicationContext(), intent);
     }
 }
+
 class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private static final int mCount = 1;
     private List<String> mIngredients = new ArrayList<>();
@@ -47,6 +46,7 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
     }
+
     public void onCreate() {
         // In onCreate() you setup any connections / cursors to your data source. Heavy lifting,
         // for example downloading or creating content etc, should be deferred to onDataSetChanged()
@@ -54,27 +54,20 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
         // First try getting the ingredients from SharedPrefs.  If there isn't any yet, display a string instructing the user to
         // open the app and choose a recipe.
-        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext).getString("Ingredients", "Open app and choose a recipe to retrieve ingredients.");
+        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext)
+                .getString(mContext.getResources().getString(R.string.recipe_ingredients),
+                        mContext.getResources().getString(R.string.open_app_to_begin));
 
-        //for (int i = 0; i < mCount; i++) {
-        //    mIngredients.add(ingredientsString);
-        //}
         mIngredients.clear();
         mIngredients.add(ingredientsString);
-        // We sleep for a second here to show how the empty view appears in the interim.
-        // The empty view is set in the StackWidgetProvider and should be a sibling of the
-        // collection view.
-        //try {
-        //    Thread.sleep(1000);
-        //} catch (InterruptedException e) {
-        //    e.printStackTrace();
-        //}
     }
+
     public void onDestroy() {
         // In onDestroy() you should tear down anything that was setup for your data source,
         // eg. cursors, connections, etc.
         mIngredients.clear();
     }
+
     public int getCount() {
         return mCount;
     }
@@ -92,33 +85,28 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
         rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent);
-        // You can do heaving lifting in here, synchronously. For example, if you need to
-        // process an image, fetch something from the network, etc., it is ok to do it here,
-        // synchronously. A loading view will show up in lieu of the actual contents in the
-        // interim.
-        try {
-            System.out.println("Loading view " + position);
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // Return the remote views object.
+
         return rv;
     }
+
     public RemoteViews getLoadingView() {
         // You can create a custom loading view (for instance when getViewAt() is slow.) If you
         // return null here, you will get the default loading view.
         return null;
     }
+
     public int getViewTypeCount() {
         return 1;
     }
+
     public long getItemId(int position) {
         return position;
     }
+
     public boolean hasStableIds() {
         return true;
     }
+
     public void onDataSetChanged() {
         // This is triggered when you call AppWidgetManager notifyAppWidgetViewDataChanged
         // on the collection view corresponding to this factory. You can do heaving lifting in
@@ -127,7 +115,9 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         // in its current state while work is being done here, so you don't need to worry about
         // locking up the widget.
         mIngredients.clear();
-        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext).getString("Ingredients", "Open app and choose a recipe to retrieve ingredients.");
+        ingredientsString = PreferenceManager.getDefaultSharedPreferences(mContext)
+                .getString(mContext.getResources().getString(R.string.recipe_ingredients),
+                        mContext.getResources().getString(R.string.open_app_to_begin));
         mIngredients.add(ingredientsString);
     }
 }

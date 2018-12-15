@@ -58,18 +58,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState != null) {
-            mTwoPane = savedInstanceState.getBoolean("TwoPane");
-            mRecipeSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
-            mRecipeName = savedInstanceState.getString("RecipeName");
-            mRecipeIngredients = savedInstanceState.getString("RecipeIngredients");
+            mTwoPane = savedInstanceState.getBoolean(getResources().getString(R.string.two_pane));
+            mRecipeSteps = savedInstanceState.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
+            mRecipeName = savedInstanceState.getString(getResources().getString(R.string.recipe_name));
+            mRecipeIngredients = savedInstanceState.getString(getResources().getString(R.string.recipe_ingredients));
         }
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
-            mTwoPane = bundle.getBoolean("TwoPane");
-            mRecipeSteps = bundle.getParcelableArrayList("RecipeSteps");
-            mRecipeName = bundle.getString("RecipeName");
-            mRecipeIngredients = bundle.getString("RecipeIngredients");
+            mTwoPane = bundle.getBoolean(getResources().getString(R.string.two_pane));
+            mRecipeSteps = bundle.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
+            mRecipeName = bundle.getString(getResources().getString(R.string.recipe_name));
+            mRecipeIngredients = bundle.getString(getResources().getString(R.string.recipe_ingredients));
         }
 
         CollapsingToolbarLayout appBarLayout = findViewById(R.id.activity_recipe_detail_toolbar_layout);
@@ -126,18 +126,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("TwoPane", mTwoPane);
-        outState.putParcelableArrayList("RecipeSteps", mRecipeSteps);
-        outState.putString("RecipeName", mRecipeName);
-        outState.putString("RecipeIngredients", mRecipeIngredients);
+        outState.putBoolean(getResources().getString(R.string.two_pane), mTwoPane);
+        outState.putParcelableArrayList(getResources().getString(R.string.recipe_steps), mRecipeSteps);
+        outState.putString(getResources().getString(R.string.recipe_name), mRecipeName);
+        outState.putString(getResources().getString(R.string.recipe_ingredients), mRecipeIngredients);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mTwoPane = savedInstanceState.getBoolean("TwoPane");
-        mRecipeSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
-        mRecipeName = savedInstanceState.getString("RecipeName");
-        mRecipeIngredients = savedInstanceState.getString("RecipeIngredients");
+        mTwoPane = savedInstanceState.getBoolean(getResources().getString(R.string.two_pane));
+        mRecipeSteps = savedInstanceState.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
+        mRecipeName = savedInstanceState.getString(getResources().getString(R.string.recipe_name));
+        mRecipeIngredients = savedInstanceState.getString(getResources().getString(R.string.recipe_ingredients));
     }
 }

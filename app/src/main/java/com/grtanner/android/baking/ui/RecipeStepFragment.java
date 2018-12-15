@@ -80,17 +80,17 @@ public class RecipeStepFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mStep = getArguments().getParcelable("STEP");
+            mStep = getArguments().getParcelable(getResources().getString(R.string.step));
         }
 
         if (savedInstanceState != null) {
-            mStep = savedInstanceState.getParcelable("Step");
+            mStep = savedInstanceState.getParcelable(getResources().getString(R.string.step));
         }
 
         mActivity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) mActivity.findViewById(R.id.activity_recipe_step_detail_toolbar_layout);
         if (appBarLayout != null) {
-           appBarLayout.setTitle("Step: " + mStep.getId());
+           appBarLayout.setTitle(getResources().getString(R.string.step_num) + mStep.getId());
         }
 
     }
@@ -234,9 +234,6 @@ public class RecipeStepFragment extends Fragment {
 
     private void releasePlayer() {
         if (mPlayer != null) {
-            //mPlayer.removeListener(mComponentListener);
-            //mPlayer.removeVideoDebugListener(mComponentListener);
-            //mPlayer.removeAudioDebugListener(mComponentListener);
             mPlayer.release();
             mPlayer = null;
         }
@@ -246,7 +243,7 @@ public class RecipeStepFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putParcelable("Step", mStep);
+        outState.putParcelable(getResources().getString(R.string.step), mStep);
 
         if (mPlayer != null) {
             outState.putLong(PLAYBACK_POSITION, mPlayer.getCurrentPosition());
@@ -260,7 +257,7 @@ public class RecipeStepFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
 
         if(savedInstanceState != null){
-            mStep = savedInstanceState.getParcelable("Step");
+            mStep = savedInstanceState.getParcelable(getResources().getString(R.string.step));
             mPlaybackPosition = savedInstanceState.getLong(PLAYBACK_POSITION);
             mCurrentWindow = savedInstanceState.getInt(CURRENT_WINDOW_INDEX);
             mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY);
@@ -272,7 +269,7 @@ public class RecipeStepFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         if(savedInstanceState != null){
-            mStep = savedInstanceState.getParcelable("Step");
+            mStep = savedInstanceState.getParcelable(getResources().getString(R.string.step));
             mPlaybackPosition = savedInstanceState.getLong(PLAYBACK_POSITION);
             mCurrentWindow = savedInstanceState.getInt(CURRENT_WINDOW_INDEX);
             mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY);

@@ -55,7 +55,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         final Step step = mStepsList.get(position);
 
         String title = step.getShortDescription();
-        String stepNum = "Step " +step.getId() + ": ";
+        String stepNum = mParentActivity.getResources().getString(R.string.step_num) +step.getId() + ": ";
 
         holder.stepShortDesc.setText(stepNum + title);
 
@@ -67,7 +67,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
 
                 if(mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putParcelable("STEP", step);
+                    arguments.putParcelable(mParentActivity.getResources().getString(R.string.step), step);
                     RecipeStepFragment fragment = new RecipeStepFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -76,7 +76,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
                             .commit();
                 } else {
                     Intent intent = new Intent(view.getContext(), RecipeStepActivity.class);
-                    intent.putExtra("STEP", step);
+                    intent.putExtra(mParentActivity.getResources().getString(R.string.step), step);
                     view.getContext().startActivity(intent);
                 }
             }
