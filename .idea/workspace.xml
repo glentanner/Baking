@@ -2450,7 +2450,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="device.picker.selection" value="192.168.56.101:5555" />
+    <property name="device.picker.selection" value="FA84T1A00244" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
@@ -2583,7 +2583,7 @@
     <frame x="23" y="189" width="1869" height="756" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="8" />
-      <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" order="11" />
       <window_info id="simpleUML" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
@@ -2592,12 +2592,12 @@
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.39543268" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.49972573" visible="true" weight="0.37123746" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="14" sideWeight="0.49972573" visible="true" weight="0.7056856" />
       <window_info anchor="bottom" id="Logcat" order="15" weight="0.4854369" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22874384" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22874384" />
       <window_info anchor="bottom" id="Build" order="16" weight="0.5518395" />
       <window_info anchor="right" id="Gradle" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
