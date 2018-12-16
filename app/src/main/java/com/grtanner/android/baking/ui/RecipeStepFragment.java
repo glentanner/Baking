@@ -63,8 +63,7 @@ public class RecipeStepFragment extends Fragment {
 
     private long mPlaybackPosition;
     private int mCurrentWindow;
-    private boolean mPlayWhenReady = true;
-    private boolean mAutoPlay = false;
+    private boolean mAutoPlay = true;
 
     private String mVideoUrl;
 
@@ -121,7 +120,7 @@ public class RecipeStepFragment extends Fragment {
         if (savedInstanceState != null) {
             mPlaybackPosition = savedInstanceState.getLong(PLAYBACK_POSITION, 0);
             mCurrentWindow = savedInstanceState.getInt(CURRENT_WINDOW_INDEX, 0);
-            mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY, false);
+            mAutoPlay = savedInstanceState.getBoolean(AUTOPLAY, true);
         }
 
         initializePlayer();
@@ -218,13 +217,13 @@ public class RecipeStepFragment extends Fragment {
             mPlayer.prepare(mediaSource);
 
             // Autoplay the video when the player is ready
-            mPlayer.setPlayWhenReady(mPlayWhenReady);
+            mPlayer.setPlayWhenReady(mAutoPlay);
         }
     }
 
     private void pausePlayer() {
         if (mPlayer != null) {
-            mPlayWhenReady = mPlayer.getPlayWhenReady();
+            mAutoPlay = mPlayer.getPlayWhenReady();
             mPlaybackPosition = mPlayer.getCurrentPosition();
             mCurrentWindow = mPlayer.getCurrentWindowIndex();
             // Pause the player
