@@ -19,32 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:loopViews="true" />
+        android:loopViews="true"
+        android:scrollbarSize="@dimen/widget_margin"/>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/widget_margin"
         android:gravity="center"
         android:background="@color/colorPrimary"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold|italic"
         android:text="@string/empty_view_text"
-        android:textSize="12sp" />
+        android:textSize="@dimen/text_size" />
 
 </FrameLayout>
-
-    <!-- TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="12sp"
-        android:textStyle="bold|italic" /> -->
