@@ -15,7 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b3def7c-e583-450b-9c18-c276fc4259a4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -25,13 +24,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recipe_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recipe_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +50,27 @@
       <file leaf-file-name="RecipeDetailActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="142" column="76" selection-start-line="142" selection-start-column="76" selection-end-line="142" selection-end-column="76" />
+            <state relative-caret-position="912">
+              <caret line="76" column="53" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="53" />
+              <folding>
+                <element signature="e#2639#2682#0" expanded="true" />
+                <element signature="e#2754#2801#0" expanded="true" />
+                <element signature="e#2859#2905#0" expanded="true" />
+                <element signature="e#2970#3023#0" expanded="true" />
+                <element signature="e#3232#3275#0" expanded="true" />
+                <element signature="e#3335#3382#0" expanded="true" />
+                <element signature="e#3428#3474#0" expanded="true" />
+                <element signature="e#3527#3580#0" expanded="true" />
+                <element signature="e#4352#4412#0" expanded="true" />
+                <element signature="e#5788#5831#0" expanded="true" />
+                <element signature="e#5884#5931#0" expanded="true" />
+                <element signature="e#5975#6021#0" expanded="true" />
+                <element signature="e#6064#6117#0" expanded="true" />
+                <element signature="e#6516#6559#0" expanded="true" />
+                <element signature="e#6627#6674#0" expanded="true" />
+                <element signature="e#6728#6774#0" expanded="true" />
+                <element signature="e#6835#6888#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,7 +87,7 @@
       <file leaf-file-name="RecipeAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
+            <state relative-caret-position="489">
               <caret line="116" column="16" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,20 +96,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecipeStepFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1856">
-              <caret line="55" column="72" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RecipeStepActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1653">
-              <caret line="106" column="90" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="90" />
+            <state relative-caret-position="474">
+              <caret line="92" column="33" lean-forward="true" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+              <folding>
+                <element signature="e#2945#2988#0" expanded="true" />
+                <element signature="e#3049#3088#0" expanded="true" />
+                <element signature="e#3125#3168#0" expanded="true" />
+                <element signature="e#3217#3256#0" expanded="true" />
+                <element signature="e#4249#4292#0" expanded="true" />
+                <element signature="e#4336#4375#0" expanded="true" />
+                <element signature="e#4581#4624#0" expanded="true" />
+                <element signature="e#4676#4715#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,12 +118,21 @@
       <file leaf-file-name="RecipeStepAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+            <state relative-caret-position="1121">
+              <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
               <folding>
                 <element signature="e#2811#4060#0" expanded="true" />
                 <element signature="e#4059#4060#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecipeStepFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-829">
+              <caret line="55" column="72" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -2439,9 +2461,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recipe_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java" />
       </list>
     </option>
   </component>
@@ -2498,11 +2520,6 @@
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="baking" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Baking120518" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="generatedJava" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
               <item name="Baking120518" type="1abcf292:AndroidViewProjectNode" />
@@ -2661,12 +2678,12 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.39543268" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.28248587" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.34661356" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.1806109" />
+      <window_info anchor="bottom" id="Logcat" order="7" weight="0.34661356" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22874384" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22874384" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.07436919" />
       <window_info anchor="right" id="Gradle" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2933,6 +2950,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#807#829#0" expanded="true" />
+            <element signature="e#1126#1148#0" expanded="true" />
+            <element signature="e#1381#1403#0" expanded="true" />
+            <element signature="e#1564#1589#0" expanded="true" />
+            <element signature="e#1644#1662#0" expanded="true" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3004,27 +3028,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="116" column="16" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="142" column="76" selection-start-line="142" selection-start-column="76" selection-end-line="142" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeStepAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+        <state relative-caret-position="1121">
+          <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
           <folding>
             <element signature="e#2811#4060#0" expanded="true" />
             <element signature="e#4059#4060#0" expanded="true" />
@@ -3032,17 +3039,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="76" column="53" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="53" />
+          <folding>
+            <element signature="e#2639#2682#0" expanded="true" />
+            <element signature="e#2754#2801#0" expanded="true" />
+            <element signature="e#2859#2905#0" expanded="true" />
+            <element signature="e#2970#3023#0" expanded="true" />
+            <element signature="e#3232#3275#0" expanded="true" />
+            <element signature="e#3335#3382#0" expanded="true" />
+            <element signature="e#3428#3474#0" expanded="true" />
+            <element signature="e#3527#3580#0" expanded="true" />
+            <element signature="e#4352#4412#0" expanded="true" />
+            <element signature="e#5788#5831#0" expanded="true" />
+            <element signature="e#5884#5931#0" expanded="true" />
+            <element signature="e#5975#6021#0" expanded="true" />
+            <element signature="e#6064#6117#0" expanded="true" />
+            <element signature="e#6516#6559#0" expanded="true" />
+            <element signature="e#6627#6674#0" expanded="true" />
+            <element signature="e#6728#6774#0" expanded="true" />
+            <element signature="e#6835#6888#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/adapter/RecipeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="116" column="16" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1856">
+        <state relative-caret-position="-829">
           <caret line="55" column="72" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grtanner/android/baking/ui/RecipeStepActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="106" column="90" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="90" />
+        <state relative-caret-position="474">
+          <caret line="92" column="33" lean-forward="true" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+          <folding>
+            <element signature="e#2945#2988#0" expanded="true" />
+            <element signature="e#3049#3088#0" expanded="true" />
+            <element signature="e#3125#3168#0" expanded="true" />
+            <element signature="e#3217#3256#0" expanded="true" />
+            <element signature="e#4249#4292#0" expanded="true" />
+            <element signature="e#4336#4375#0" expanded="true" />
+            <element signature="e#4581#4624#0" expanded="true" />
+            <element signature="e#4676#4715#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

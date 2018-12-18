@@ -48,7 +48,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecipeStepAdapter mStepsAdapter;
     private static final String LIST_POSITION = "list_position";
-    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
     private int mListPosition = RecyclerView.NO_POSITION;
 
     @Override
@@ -80,7 +79,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
             mRecipeSteps = bundle.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
             mRecipeName = bundle.getString(getResources().getString(R.string.recipe_name));
             mRecipeIngredients = bundle.getString(getResources().getString(R.string.recipe_ingredients));
-            //mListPosition = bundle.getInt(LIST_POSITION);
         }
 
         CollapsingToolbarLayout appBarLayout = findViewById(R.id.activity_recipe_detail_toolbar_layout);
@@ -109,7 +107,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         // Set the adapter
         mRecyclerView.setAdapter(mStepsAdapter);
-        //mListPosition = mStepsAdapter.getSelectedPosition();
         mStepsAdapter.setSelectedPosition(mListPosition);
 
         // Set the layout, for linear layout, it looks nicer on a tablet.
@@ -141,8 +138,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         outState.putString(getResources().getString(R.string.recipe_name), mRecipeName);
         outState.putString(getResources().getString(R.string.recipe_ingredients), mRecipeIngredients);
         outState.putInt(LIST_POSITION, mStepsAdapter.getSelectedPosition());
-
-        //outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, mLinearLayoutManager.onSaveInstanceState());
     }
 
     @Override
@@ -153,8 +148,5 @@ public class RecipeDetailActivity extends AppCompatActivity {
         mRecipeName = savedInstanceState.getString(getResources().getString(R.string.recipe_name));
         mRecipeIngredients = savedInstanceState.getString(getResources().getString(R.string.recipe_ingredients));
         mListPosition = savedInstanceState.getInt(LIST_POSITION);
-
-        //Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
-        //mLinearLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
     }
 }

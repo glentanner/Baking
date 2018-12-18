@@ -19,6 +19,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import android.view.MenuItem;
 import com.grtanner.android.baking.data.Step;
 
@@ -30,8 +32,9 @@ import com.grtanner.android.baking.data.Step;
  */
 public class RecipeStepActivity extends AppCompatActivity {
 
-    private boolean mTwoPane = false;
+    private boolean mTwoPane;
     private Step mStep;
+    private static final String RECIPE_STEP_FRAGMENT_TAG = "RecipeStepFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +80,12 @@ public class RecipeStepActivity extends AppCompatActivity {
 
             RecipeStepFragment fragment = new RecipeStepFragment();
             fragment.setArguments(arguments);
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.recipe_step_detail_container, fragment)
+                    .replace(R.id.recipe_step_detail_container, fragment, RECIPE_STEP_FRAGMENT_TAG)
                     .commit();
+        } else {
+            this.onBackPressed();
         }
     }
 
