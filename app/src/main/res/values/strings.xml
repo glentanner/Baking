@@ -16,6 +16,7 @@
     <string name="recipe_ingredients">RecipeIngredients</string>
     <string name="step">STEP</string>
     <string name="step_num">"Step "</string>
+    <string name="steps">steps</string>
 
 
 </resources>

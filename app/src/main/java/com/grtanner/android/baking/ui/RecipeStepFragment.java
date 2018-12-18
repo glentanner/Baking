@@ -196,7 +196,7 @@ public class RecipeStepFragment extends Fragment {
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(
                     mActivity,
-                    Util.getUserAgent(mActivity, "Baking"),
+                    Util.getUserAgent(mActivity, mActivity.getResources().getString(R.string.app_name)),
                     defaultBandwidthMeter);
 
             // Produces Extractor instances for parsing the media data.

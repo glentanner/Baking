@@ -30,7 +30,7 @@ import com.grtanner.android.baking.data.Step;
  */
 public class RecipeStepActivity extends AppCompatActivity {
 
-    private boolean mTwoPane;
+    private boolean mTwoPane = false;
     private Step mStep;
 
     @Override
@@ -69,8 +69,10 @@ public class RecipeStepActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
+            mTwoPane = getIntent().getBooleanExtra(getResources().getString(R.string.two_pane), false);
             mStep = getIntent().getParcelableExtra(getResources().getString(R.string.step));
 
+            arguments.putBoolean(getResources().getString(R.string.two_pane), mTwoPane);
             arguments.putParcelable(getResources().getString(R.string.step), mStep);
 
             RecipeStepFragment fragment = new RecipeStepFragment();
@@ -89,5 +91,19 @@ public class RecipeStepActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(getResources().getString(R.string.two_pane), mTwoPane);
+        outState.putParcelable(getResources().getString(R.string.step), mStep);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mTwoPane = savedInstanceState.getBoolean(getResources().getString(R.string.two_pane));
+        mStep = savedInstanceState.getParcelable(getResources().getString(R.string.step));
     }
 }

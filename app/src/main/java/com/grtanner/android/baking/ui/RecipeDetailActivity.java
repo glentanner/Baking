@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.widget.TextView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -41,6 +43,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private ArrayList<Step> mRecipeSteps = new ArrayList<>();
     private String mRecipeName;
     private String mRecipeIngredients;
+    //
+    private LinearLayoutManager mLinearLayoutManager;
+    private RecyclerView mRecyclerView;
+    private RecipeStepAdapter mStepsAdapter;
+    private static final String LIST_POSITION = "list_position";
+    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
+    private int mListPosition = RecyclerView.NO_POSITION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             mRecipeSteps = savedInstanceState.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
             mRecipeName = savedInstanceState.getString(getResources().getString(R.string.recipe_name));
             mRecipeIngredients = savedInstanceState.getString(getResources().getString(R.string.recipe_ingredients));
+            mListPosition = savedInstanceState.getInt(LIST_POSITION);
         }
 
         Bundle bundle = this.getIntent().getExtras();
@@ -70,6 +80,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             mRecipeSteps = bundle.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
             mRecipeName = bundle.getString(getResources().getString(R.string.recipe_name));
             mRecipeIngredients = bundle.getString(getResources().getString(R.string.recipe_ingredients));
+            //mListPosition = bundle.getInt(LIST_POSITION);
         }
 
         CollapsingToolbarLayout appBarLayout = findViewById(R.id.activity_recipe_detail_toolbar_layout);
@@ -77,7 +88,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
             appBarLayout.setTitle(mRecipeName);
         }
 
+
         if (findViewById(R.id.recipe_step_detail_container) != null) {
+            // The detail container view will be present only in the
+            // large-screen layouts (res/values-w900dp).
+            // If this view is present, then the
+            // activity should be in two-pane mode.
             mTwoPane = true;
         }
 
@@ -88,23 +104,17 @@ public class RecipeDetailActivity extends AppCompatActivity {
         ingTextView.setText(getString(R.string.recipe_name_and_ingredients, mRecipeName));
         textView.setText(mRecipeIngredients);
 
-        RecyclerView mRecyclerView = findViewById(R.id.recycler_view_steps);
-        RecipeStepAdapter stepsAdapter = new RecipeStepAdapter(this, mRecipeSteps, mTwoPane);
+        mRecyclerView = findViewById(R.id.recycler_view_steps);
+        mStepsAdapter = new RecipeStepAdapter(this, mRecipeSteps, mTwoPane);
 
         // Set the adapter
-        mRecyclerView.setAdapter(stepsAdapter);
+        mRecyclerView.setAdapter(mStepsAdapter);
+        //mListPosition = mStepsAdapter.getSelectedPosition();
+        mStepsAdapter.setSelectedPosition(mListPosition);
 
         // Set the layout, for linear layout, it looks nicer on a tablet.
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-
-        if (findViewById(R.id.recipe_step_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-        }
+        mLinearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
     }
 
     @Override
@@ -130,6 +140,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         outState.putParcelableArrayList(getResources().getString(R.string.recipe_steps), mRecipeSteps);
         outState.putString(getResources().getString(R.string.recipe_name), mRecipeName);
         outState.putString(getResources().getString(R.string.recipe_ingredients), mRecipeIngredients);
+        outState.putInt(LIST_POSITION, mStepsAdapter.getSelectedPosition());
+
+        //outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, mLinearLayoutManager.onSaveInstanceState());
     }
 
     @Override
@@ -139,5 +152,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         mRecipeSteps = savedInstanceState.getParcelableArrayList(getResources().getString(R.string.recipe_steps));
         mRecipeName = savedInstanceState.getString(getResources().getString(R.string.recipe_name));
         mRecipeIngredients = savedInstanceState.getString(getResources().getString(R.string.recipe_ingredients));
+        mListPosition = savedInstanceState.getInt(LIST_POSITION);
+
+        //Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+        //mLinearLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
     }
 }

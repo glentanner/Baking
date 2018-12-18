@@ -16,17 +16,23 @@ limitations under the License.
 package com.grtanner.android.baking.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.grtanner.android.baking.ui.R;
 import com.grtanner.android.baking.ui.RecipeDetailActivity;
 import com.grtanner.android.baking.ui.RecipeStepActivity;
 import com.grtanner.android.baking.ui.RecipeStepFragment;
 import com.grtanner.android.baking.data.Step;
+
 import java.util.ArrayList;
 
 // Ref: https://www.sitepoint.com/mastering-complex-lists-with-the-android-recyclerview/
@@ -35,6 +41,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     private ArrayList<Step> mStepsList;
     private RecipeDetailActivity mParentActivity;
     private boolean mTwoPane;
+    private int mSelectedPosition = RecyclerView.NO_POSITION;
 
     public RecipeStepAdapter(RecipeDetailActivity parent, ArrayList<Step> stepsList, boolean twoPane) {
         this.mParentActivity = parent;
@@ -52,10 +59,17 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     @Override
     public void onBindViewHolder(RecipeStepViewHolder holder, int position) {
 
+        //
+        holder.itemView.setBackgroundColor(mSelectedPosition == position ?
+                mParentActivity.getResources().getColor(R.color.light_gray) :
+                mParentActivity.getResources().getColor(R.color.colorWhite));
+
+        final int mPosition = position;
+
         final Step step = mStepsList.get(position);
 
         String title = step.getShortDescription();
-        String stepNum = mParentActivity.getResources().getString(R.string.step_num) +step.getId() + ": ";
+        String stepNum = mParentActivity.getResources().getString(R.string.step_num) + step.getId() + ": ";
 
         holder.stepShortDesc.setText(stepNum + title);
 
@@ -65,7 +79,11 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
             @Override
             public void onClick(View view) {
 
-                if(mTwoPane) {
+                notifyItemChanged(mSelectedPosition);
+                mSelectedPosition = mPosition;
+                notifyItemChanged(mSelectedPosition);
+
+                if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putParcelable(mParentActivity.getResources().getString(R.string.step), step);
                     RecipeStepFragment fragment = new RecipeStepFragment();
@@ -79,6 +97,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
                     intent.putExtra(mParentActivity.getResources().getString(R.string.step), step);
                     view.getContext().startActivity(intent);
                 }
+
             }
         });
     }
@@ -108,6 +127,14 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         int position = mStepsList.indexOf(data);
         mStepsList.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public int getSelectedPosition() {
+        return mSelectedPosition;
+    }
+
+    public void setSelectedPosition(int position) {
+        mSelectedPosition = position;
     }
 
     /**
