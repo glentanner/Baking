@@ -20,5 +20,3 @@ The demo video is linked below.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-https://git.heroku.com/arcane-lowlands-36776.git
