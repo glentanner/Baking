@@ -1,6 +1,6 @@
 # Miriam's Just Desserts
 
-This is a Native Android app written in Java. It demonstrates the use of RecyclerView, ExoPlayer, Master/Detail Flow, and Material Design.
+Recipe app from the Android Developer(Java) Nanodegree at Udacity. It demonstrates the use of RecyclerView, ExoPlayer, Master/Detail Flow, and Material Design.
 
 # Demo
 
