@@ -1,6 +1,6 @@
 # Miriam's Just Desserts
 This is an earlier Android project built in Java. It demonstrates app architecture, data modeling, and UI flow before I transitioned to modern Kotlin + Compose.
-Recipe app from the Android Developer(Java) Nanodegree at Udacity. It demonstrates the use of RecyclerView, ExoPlayer, Master/Detail Flow, and Material Design.
+This recipe app demonstrates the use of RecyclerView, ExoPlayer, Master/Detail Flow, and Material Design.
 
 # Demo
 
